@@ -11,10 +11,18 @@ IntComplex::IntComplex(const IntComplex &c) : real(c.real), imag(c.imag) {}
 IntComplex::~IntComplex() {}
 
 // Add operations
-IntComplex &IntComplex ::operator+(const IntComplex &C)
+IntComplex &IntComplex ::operator+(const IntComplex &c)
 {
     IntComplex result;
-    result.real += C.real;
+    result.real += c.real;
     result.imag += c.imag;
+    return result;
+}
+
+IntComplex &IntComplex ::operator-(const IntComplex &c)
+{
+    IntComplex result;
+    result.real -= c.real;
+    result.imag -= c.imag;
     return result;
 }
