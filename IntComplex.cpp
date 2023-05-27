@@ -14,15 +14,23 @@ IntComplex::~IntComplex() {}
 IntComplex &IntComplex ::operator+(const IntComplex &c)
 {
     IntComplex result;
-    result.real += c.real;
-    result.imag += c.imag;
+    result.real = real + c.real;
+    result.imag = real + c.imag;
     return result;
 }
 
 IntComplex &IntComplex ::operator-(const IntComplex &c)
 {
     IntComplex result;
-    result.real -= c.real;
-    result.imag -= c.imag;
+    result.real = real - c.real;
+    result.imag = real - c.imag;
+    return result;
+}
+
+IntComplex &IntComplex ::operator*(const IntComplex &c)
+{
+    IntComplex result;
+    result.real = (real * c.real) - (imag * c.imag);
+    result.imag = (real * c.imag) + (imag * c.real);
     return result;
 }
