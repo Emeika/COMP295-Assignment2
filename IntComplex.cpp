@@ -51,3 +51,8 @@ IntComplex &IntComplex::operator/(const IntComplex &c)
         return *result; // Return the result by dereferencing the pointer
     }
 }
+
+void IntComplex::print()
+{
+    cout << real << " +i" << imag << endl;
+}
