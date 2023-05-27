@@ -11,26 +11,43 @@ IntComplex::IntComplex(const IntComplex &c) : real(c.real), imag(c.imag) {}
 IntComplex::~IntComplex() {}
 
 // Add operations
-IntComplex &IntComplex ::operator+(const IntComplex &c)
+IntComplex &IntComplex::operator+(const IntComplex &c)
 {
-    IntComplex result;
-    result.real = real + c.real;
-    result.imag = real + c.imag;
-    return result;
+    IntComplex *result = new IntComplex; // Create a new dynamically allocated IntComplex object to store the result
+    result->real = real + c.real;        // Add the real parts of the complex numbers
+    result->imag = imag + c.imag;        // Add the imaginary parts
+    return *result;                      // Return the result by dereferencing the pointer
 }
 
-IntComplex &IntComplex ::operator-(const IntComplex &c)
+IntComplex &IntComplex::operator-(const IntComplex &c)
 {
-    IntComplex result;
-    result.real = real - c.real;
-    result.imag = real - c.imag;
-    return result;
+    IntComplex *result = new IntComplex;
+    result->real = real - c.real; // Subtract the real parts
+    result->imag = imag - c.imag; // Subtract the imaginary parts
+    return *result;
 }
 
-IntComplex &IntComplex ::operator*(const IntComplex &c)
+IntComplex &IntComplex::operator*(const IntComplex &c)
 {
-    IntComplex result;
-    result.real = (real * c.real) - (imag * c.imag);
-    result.imag = (real * c.imag) + (imag * c.real);
-    return result;
+    IntComplex *result = new IntComplex;
+    result->real = (real * c.real) - (imag * c.imag); // Multiply and subtract the cross-products of complex numbers
+    result->imag = (real * c.imag) + (imag * c.real); // Multiply and add the product of real and imaginary parts
+    return *result;
+}
+
+IntComplex &IntComplex::operator/(const IntComplex &c)
+{
+    if (c.real == 0 && c.imag == 0)
+    {
+        cout << "Division by zero is not possible." << endl; // Handle for division by zero
+        return *this;
+    }
+    else
+    {
+        IntComplex *result = new IntComplex;
+
+        result->real = (real * c.real + imag * c.imag) / (c.real * c.real + c.imag * c.imag);
+        result->imag = (imag * c.real - real * c.imag) / (c.real * c.real + c.imag * c.imag);
+        return *result; // Return the result by dereferencing the pointer
+    }
 }
