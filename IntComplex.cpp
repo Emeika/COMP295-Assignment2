@@ -54,5 +54,5 @@ IntComplex &IntComplex::operator/(const IntComplex &c)
 
 void IntComplex::print()
 {
-    cout << real << " +i" << imag << endl;
+    cout << real << " + i" << imag << endl;
 }
