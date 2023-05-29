@@ -27,7 +27,8 @@ public:
     FloatComplex &operator/(const FloatComplex &);
 
     // Inherit the print function from the base class
-    using IntComplex::print;
+    // using IntComplex::print;
+    void print();
 };
 
 #endif

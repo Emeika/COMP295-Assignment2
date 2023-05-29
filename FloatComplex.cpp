@@ -1,5 +1,6 @@
 #include <iostream>
 #include "FloatComplex.h"
+#include <cmath>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ FloatComplex::FloatComplex(const float &real, const float &imag) : real(real), i
 
 FloatComplex::FloatComplex(const FloatComplex &c) : real(c.real), imag(c.imag) {}
 
-FloatComplex::~FloatComplex() {}
+FloatComplex::~FloatComplex() {} // Automatically called on object destruction to release held resources.
 
 // Operations
 
@@ -57,4 +58,16 @@ FloatComplex &FloatComplex::operator/(const FloatComplex &c)
     result->real = (real * c.real + imag * c.imag) / (c.real * c.real + c.imag * c.imag);
     result->imag = (imag * c.real - real * c.imag) / (c.real * c.real + c.imag * c.imag);
     return *result; // Return the result by dereferencing the pointer
+}
+
+void FloatComplex::print()
+{
+    if (imag < 0)
+    {
+        cout << real << " - " << fabs(imag) << "i" << endl;
+    }
+    else
+    {
+        cout << real << " + " << imag << "i" << endl;
+    }
 }

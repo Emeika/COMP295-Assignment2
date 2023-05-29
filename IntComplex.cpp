@@ -1,17 +1,22 @@
 #include <iostream>
 #include "IntComplex.h"
+#include <cmath>
 using namespace std;
 
-IntComplex::IntComplex() : real(0), imag(0) {}
+IntComplex::IntComplex() : real(0), imag(0)
+{
+}
 
 IntComplex::IntComplex(const int &real, const int &imag) : real(real), imag(imag) {}
+// const makes sure that the arguments remain constant
+// pass by reference
 
 IntComplex::IntComplex(const IntComplex &c) : real(c.real), imag(c.imag) {}
 
 IntComplex::~IntComplex() {}
 
 // Add operations
-IntComplex &IntComplex::operator+(const IntComplex &c)
+IntComplex &IntComplex::operator+(const IntComplex &c) // define const objects - operator wont modify the objects
 {
     IntComplex *result = new IntComplex; // Create a new dynamically allocated IntComplex object to store the result
     result->real = real + c.real;        // Add the real parts of the complex numbers
@@ -42,17 +47,22 @@ IntComplex &IntComplex::operator/(const IntComplex &c)
         cout << "Division by zero is not possible." << endl; // Handle for division by zero
         return *this;
     }
-    else
-    {
-        IntComplex *result = new IntComplex;
 
-        result->real = (real * c.real + imag * c.imag) / (c.real * c.real + c.imag * c.imag);
-        result->imag = (imag * c.real - real * c.imag) / (c.real * c.real + c.imag * c.imag);
-        return *result; // Return the result by dereferencing the pointer
-    }
+    IntComplex *result = new IntComplex;
+
+    result->real = (real * c.real + imag * c.imag) / (c.real * c.real + c.imag * c.imag);
+    result->imag = (imag * c.real - real * c.imag) / (c.real * c.real + c.imag * c.imag);
+    return *result; // Return the result by dereferencing the pointer
 }
 
 void IntComplex::print()
 {
-    cout << real << " + i" << imag << endl;
+    if (imag < 0)
+    {
+        cout << real << " - " << abs(imag) << "i" << endl;
+    }
+    else
+    {
+        cout << real << " + " << imag << "i" << endl;
+    }
 }
